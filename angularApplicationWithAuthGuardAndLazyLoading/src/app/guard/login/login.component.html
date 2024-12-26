@@ -1,0 +1,10 @@
+<h3>Login</h3>
+<div class="form-group">
+  <label for="username">Username</label>
+  <input type="text" class="form-control" id="username" placeholder="Enter username" [(ngModel)]="username">
+</div>
+<div class="form-group">
+  <label for="password">Password</label>
+  <input type="password" class="form-control" id="password" placeholder="Enter password" [(ngModel)]="password">
+</div>
+<button class="btn btn-primary" (click)="login()">Login</button>

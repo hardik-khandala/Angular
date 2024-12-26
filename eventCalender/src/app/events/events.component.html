@@ -1,0 +1,28 @@
+<div class="calendar">
+    <h2>Events for {{ currentDate | date: 'fullDate' }}</h2>
+
+    <div *ngIf="!currentDate">
+        <p>Please select a date to start:</p>
+        <input type="date" (change)="onDateSelect($event)" />
+    </div>
+
+    <div *ngIf="currentDate">
+        <div>
+            <button (click)="navigateToPreviousDay()">Previous Day</button>
+            <button (click)="navigateToNextDay()">Next Day</button>
+        </div>
+
+        <ul>
+            <li *ngFor="let event of events">{{ event }}</li>
+        </ul>
+
+        <button (click)="openAddEvent()">Add Event</button>
+    </div>
+</div>
+
+<div *ngIf="isAddingEvent" class="modal">
+    <h3>Add Event for {{ currentDate | date: 'fullDate' }}</h3>
+    <input type="text" [(ngModel)]="newEvent" placeholder="Enter event name" />
+    <button (click)="addEvent()">Save</button>
+    <button (click)="closeAddEvent()">Cancel</button>
+</div>

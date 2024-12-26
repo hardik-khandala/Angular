@@ -1,0 +1,34 @@
+<div class="container mt-4" style="max-width: 600px;">
+  <div class="row">
+    <div class="col-md-6">
+      <label for="sender" class="form-label">Select a Sender:</label>
+      <select id="sender" [(ngModel)]="sender" (change)="onDropdownChange()" class="form-select">
+        <option *ngFor="let user of users">{{ user.name }}</option>
+      </select>
+    </div>
+    <div class="col-md-6">
+      <label for="receiver" class="form-label">Select a Receiver:</label>
+      <select id="receiver" [(ngModel)]="receiver" (change)="onDropdownChange()" class="form-select">
+        <option *ngFor="let user of users">{{ user.name }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="chat-box">
+    <div *ngFor="let message of filteredMessages" class="message-item">
+      <div [ngClass]="{'sender': message.senderId === sender, 'receiver': message.senderId !== sender}" class="message-content">
+        <div class="message-text">
+          {{ message.message }}
+        </div>
+        <div class="message-time text-muted small">
+          {{ message.time }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-group mt-3">
+    <input type="text" class="form-control" placeholder="Enter Message" [(ngModel)]="message" />
+    <button class="btn btn-primary" (click)="sendMessage()">Send</button>
+  </div>
+</div>

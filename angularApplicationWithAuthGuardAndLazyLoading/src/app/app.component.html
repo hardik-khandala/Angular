@@ -1,0 +1,36 @@
+<div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">   
+    <div class="container">
+      <div class="title">
+        <a class="navbar-brand" routerLink="/">MyApp</a>
+      </div>
+      <div class="collapse navbar-collapse d-flex justify-content-end">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">DashBoard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/dashboard/settings" routerLinkActive="active">Settings</a>
+          </li>
+          
+          <li class="nav-item" *ngIf="authService.isValidLogin; else login">
+            <a class="nav-link" (click)="authService.isValidLogin = false">Logout</a>
+          </li>
+          <ng-template #login>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/login">Login</a>
+            </li>
+          </ng-template>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<router-outlet></router-outlet>

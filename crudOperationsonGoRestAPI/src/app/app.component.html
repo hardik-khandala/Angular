@@ -1,0 +1,41 @@
+<table border="1">
+  <caption></caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Gender</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.gender }}</td>
+      <td [ngClass]="user.status">{{ user.status }}</td>
+      <td>
+        <button (click)="editUser(user)">Edit</button>
+        <button (click)="confirmDelete(user.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<button (click)="previousPage()" [disabled]="page === 1">Previous</button>
+<button (click)="nextPage()">Next</button>
+
+<form (ngSubmit)="onSubmit()" [formGroup]="userForm">
+  <input formControlName="name" placeholder="Name" required />
+  <input formControlName="email" placeholder="Email" required />
+  <select formControlName="gender">
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+  </select>
+    <select formControlName="status">
+      <option value="active">Active</option>
+      <option value="inactive">Inactive</option>
+    </select>
+    <button type="submit">{{ editing ? 'Update' : 'Create' }} User</button>
+</form>

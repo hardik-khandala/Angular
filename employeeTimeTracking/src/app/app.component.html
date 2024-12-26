@@ -1,0 +1,45 @@
+<div class="container">
+  <h2>Employee Time Tracking</h2>
+
+  <form [formGroup]="timeLogForm" (ngSubmit)="submitLog()">
+    <div class="form-group">
+      <label for="employeeName">Employee Name:</label>
+      <input id="employeeName" formControlName="employeeName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="timeIn">Time In:</label>
+      <input id="timeIn" type="time" formControlName="timeIn" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="timeOut">Time Out:</label>
+      <input id="timeOut" type="time" formControlName="timeOut" class="form-control" />
+    </div>
+
+    <button type="submit" [disabled]="!timeLogForm.valid" class="btn btn-primary mt-3" id="submitTimeLogButton">
+      Submit Time Log
+    </button>
+  </form>
+
+  <h3 class="mt-4">Time Logs</h3>
+  <table class="table" border="1">
+    <caption></caption>
+    <thead>
+      <tr>
+        <th id="employeeNameColumn">Employee Name</th>
+        <th id="timeInColumn">Time In</th>
+        <th id="timeOutColumn">Time Out</th>
+        <th id="totalHoursWorkedColumn">Total Hours Worked</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let log of timeLogs">
+        <td>{{ log.employeeName }}</td>
+        <td>{{ log.timeIn }}</td>
+        <td>{{ log.timeOut }}</td>
+        <td>{{ log.totalHours | number:'1.2-2' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
